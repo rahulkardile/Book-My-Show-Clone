@@ -2,6 +2,6 @@ package com.lentra.BookMyShowClone.entity;
 
 public enum UserType {
     ADMIN,
-    CUSTOMER,
+    USER,
     THEATER_ADMIN
 }

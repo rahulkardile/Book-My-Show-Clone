@@ -1,6 +1,6 @@
 package com.lentra.BookMyShowClone.controller;
 
-import com.lentra.BookMyShowClone.entity.SimpleRes;
+import com.lentra.BookMyShowClone.entity.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.RestController;
 public class Home {
 
     @Autowired
-    SimpleRes res;
+    Response res;
 
     @GetMapping
-    public ResponseEntity<SimpleRes> Greet() {
+    public ResponseEntity<Response> Greet() {
         res.setMessage("Hello From Book My Show Server!");
         res.setStatusCode(HttpStatus.OK.value());
         res.setSuccess(true);
-        return new ResponseEntity<SimpleRes>(res, HttpStatus.OK);
+        return new ResponseEntity<Response>(res, HttpStatus.OK);
     }
 
 }

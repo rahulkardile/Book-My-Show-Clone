@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class SimpleRes {
+public class Response {
     private String message;
     private int statusCode;
     private boolean success;

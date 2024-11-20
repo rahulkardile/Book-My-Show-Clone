@@ -12,7 +12,8 @@ import java.util.Date;
         name = "users",
         uniqueConstraints = {
                 @UniqueConstraint(columnNames = "email") ,
-                @UniqueConstraint(columnNames = "phone")
+                @UniqueConstraint(columnNames = "phone"),
+                @UniqueConstraint(columnNames = "username")
         }
 )
 @Data
@@ -27,6 +28,9 @@ public class Users {
 
     @Column(unique = true, nullable = false)
     private String email;
+
+    @Column(unique = true, nullable = false)
+    private String username;
 
     @Column(unique = true, nullable = false)
     private String phone;

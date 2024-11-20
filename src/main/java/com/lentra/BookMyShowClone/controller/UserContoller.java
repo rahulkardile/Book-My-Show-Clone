@@ -6,11 +6,12 @@ import com.lentra.BookMyShowClone.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController("/api")
+@RestController
 public class UserContoller {
 
     @Autowired
@@ -31,5 +32,25 @@ public class UserContoller {
             response.setSuccess(false);
             return new ResponseEntity <>( response, HttpStatus.CONFLICT);
         }
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<Response> login(@RequestBody Users user){
+        if(userService.verify(user)){
+            response.setMessage("User login successfull!");
+            response.setStatusCode(HttpStatus.OK.value( ));
+            response.setSuccess(true);
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        }else{
+            response.setMessage("user does not exist!");
+            response.setStatusCode(HttpStatus.NOT_FOUND.value( ));
+            response.setSuccess(false);
+            return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/allUsers")
+    public String getAllUsers(){
+        return "All Users";
     }
 }

@@ -4,7 +4,7 @@
 
     <section class="flex gap-2 items-center justify-items-center justify-center">
       <a href="/home" class="w-48">
-        <img src="logo.png" alt="BookMyShow" class=" items-center object-cover">
+        <img src="logo.png" alt="BookMyShow" class="items-center object-cover">
       </a>
       <input type="text" placeholder="Search for Movies, Events, Plays, Sports and Activities"
         class="py-2 pl-4 pr-36 w-full text-sm outline-none rounded-sm border">
@@ -18,7 +18,11 @@
         <option value="delhi">Delhi</option>
       </select>
 
+      @if (token != null) {
+      <button (click)="logout()" class="bg-red-600 text-white p-2 rounded-md text-xs">Logout</button>
+      }@else{
       <a href="/login" class="bg-red-600 text-white p-2 rounded-md text-xs">Sign in</a>
+      }
 
       <div class="ml-3">
         menu

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { AuthServiceService } from '../../core/auth-service.service';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import { UserLogin } from '../../interface/types';
+import { LoginResponse, UserLogin } from '../../interface/types';
 
 @Component({
   selector: 'app-login',
@@ -24,10 +24,19 @@ export class LoginComponent {
 
   onSubmit() {
     this.authService.login(this.user).subscribe({
-      next: (response: any) => {
-        // localStorage.setItem("token", response.token)
-        console.log(response);
-        this.router.navigate(['/home']);
+      next: (response: LoginResponse) => {
+
+        if (response.success && response.token) {
+          localStorage.setItem("token", ("Bearer " + response.token))
+          this.router.navigate(['/home']);
+
+          setTimeout(() => {
+            location.reload();
+          }, 100)
+
+        } else {
+          console.log("Internal server error");
+        }
       },
 
       error: (error: any) => {

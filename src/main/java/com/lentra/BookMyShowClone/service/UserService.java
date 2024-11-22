@@ -1,5 +1,6 @@
 package com.lentra.BookMyShowClone.service;
 
+import com.lentra.BookMyShowClone.entity.UserType;
 import com.lentra.BookMyShowClone.entity.Users;
 import com.lentra.BookMyShowClone.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,11 @@ public class UserService {
 
         if ( repo.findByEmail(user.getEmail( )) == null ) {
             user.setPassword(encoder.encode(user.getPassword( )));
+
+            if(user.getType() == null){
+                user.setType(UserType.USER);
+            }
+
             user.setCreated_at(new Date( ));
             repo.save(user);
             return true;

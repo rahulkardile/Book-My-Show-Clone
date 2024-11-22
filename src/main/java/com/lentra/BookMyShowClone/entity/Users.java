@@ -26,6 +26,8 @@ public class Users {
 
     private String name;
 
+    private String active;
+
     @Column(unique = true, nullable = false)
     private String email;
 

@@ -11,6 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class UserService {
@@ -54,4 +55,10 @@ public class UserService {
         
         return "false";
     }
+
+    public List<Users> usersList(){
+        return repo
+                .findAll();
+    }
+
 }

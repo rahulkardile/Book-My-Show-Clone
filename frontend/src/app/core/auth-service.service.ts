@@ -10,18 +10,18 @@ import { UserLogin, UserRegistration} from '../interface/types';
 
 
 export class AuthServiceService {
-  private baseUrl = "http://localhost:8080";
+  private baseUrl = "http://localhost:8080/api";
 
   constructor(private http: HttpClient) {}
 
   login(data: UserLogin): Observable<any> {
-    return this.http.post(`${this.baseUrl}/login`, data).pipe(
+    return this.http.post(`${this.baseUrl}/auth/login`, data).pipe(
       catchError(this.handleError)
     );
   }
 
   register(data: UserRegistration): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}/register`, data).pipe(
+    return this.http.post<any>(`${this.baseUrl}/auth/register`, data).pipe(
       catchError(this.handleError)
     );
   }

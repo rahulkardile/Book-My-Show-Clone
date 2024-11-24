@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
+@RequestMapping("/api/auth")
 public class UserContoller {
 
     @Autowired
@@ -47,12 +48,13 @@ public class UserContoller {
             response.setMessage("User login successfull!");
             response.setStatusCode(HttpStatus.OK.value( ));
             response.setSuccess(true);
+            System.out.println("Okk");
             return new ResponseEntity <>(response , HttpStatus.OK);
         }
     }
 
     @GetMapping("/allUsers")
-    public String getAllUsers() {
-        return "All Users";
+    public ResponseEntity<?> getAllUsers() {
+        return new ResponseEntity<>(userService.usersList(), HttpStatus.OK);
     }
 }

@@ -13,15 +13,12 @@ export class HomeComponent implements AfterViewInit {
   constructor() {}
 
   ngAfterViewInit(): void {
-    // Query all slides after the view has been initialized
     this.slides = Array.from(document.querySelectorAll('#slide'));
 
-    // Position slides horizontally
     this.slides.forEach((slide, index) => {
       slide.style.left = `${index * 100}%`;
     });
 
-    // Start the carousel
     this.startCarousel();
   }
 

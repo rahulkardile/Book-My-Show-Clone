@@ -34,16 +34,20 @@ public class UserContoller {
 
     @PostMapping("/login")
     public ResponseEntity <Response> login(@RequestBody Users user) {
-        if ( userService.verify(user) ) {
-            response.setMessage("User login successfull!");
-            response.setStatusCode(HttpStatus.OK.value( ));
-            response.setSuccess(true);
-            return new ResponseEntity <>(response , HttpStatus.OK);
-        } else {
+
+        String token = userService.verify(user);
+
+        if ( token.equals("false") ) {
             response.setMessage("user does not exist!");
             response.setStatusCode(HttpStatus.NOT_FOUND.value( ));
             response.setSuccess(false);
             return new ResponseEntity <>(response , HttpStatus.NOT_FOUND);
+        } else {
+            response.setToken(token);
+            response.setMessage("User login successfull!");
+            response.setStatusCode(HttpStatus.OK.value( ));
+            response.setSuccess(true);
+            return new ResponseEntity <>(response , HttpStatus.OK);
         }
     }
 

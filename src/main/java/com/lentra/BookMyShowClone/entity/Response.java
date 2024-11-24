@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 @NoArgsConstructor
 public class Response {
     private String message;
+    private String token;
     private int statusCode;
     private boolean success;
 }

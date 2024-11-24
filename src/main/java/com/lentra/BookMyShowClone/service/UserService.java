@@ -21,6 +21,9 @@ public class UserService {
     @Autowired
     private AuthenticationManager manager;
 
+    @Autowired
+    private JWTService jwtService;
+
     private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
 
     public boolean registerUser(Users user) {
@@ -40,12 +43,15 @@ public class UserService {
         }
     }
 
-    public boolean verify(Users user) {
-
+    public String verify(Users user) {
         Authentication authentication = manager.authenticate(
                 new UsernamePasswordAuthenticationToken(user.getUsername( ) , user.getPassword( ))
         );
 
-        return authentication.isAuthenticated( );
+        if(authentication.isAuthenticated()){
+            return jwtService.generateToken(user.getUsername( ));
+        }
+        
+        return "false";
     }
 }

@@ -38,11 +38,12 @@ public class securityConfig {
                 .build( );
     }
 
+    // custom authentication
     @Bean
-    public AuthenticationProvider authenticationProvider(){
-        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+    public AuthenticationProvider authenticationProvider() {
+        DaoAuthenticationProvider provider = new DaoAuthenticationProvider( );
 
-        provider.setPasswordEncoder(new BCryptPasswordEncoder( 12 ));
+        provider.setPasswordEncoder(new BCryptPasswordEncoder(12));
         provider.setUserDetailsService(userDetailsService);
 
         return provider;
@@ -50,7 +51,7 @@ public class securityConfig {
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
-       return configuration.getAuthenticationManager();
+        return configuration.getAuthenticationManager( );
     }
 
 }

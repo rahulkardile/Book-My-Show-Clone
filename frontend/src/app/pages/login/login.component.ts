@@ -27,12 +27,15 @@ export class LoginComponent {
       next: (response: LoginResponse) => {
 
         if (response.success && response.token) {
-          localStorage.setItem("token", ("Bearer " + response.token))
+          
+          console.log(response);          
+
+          // localStorage.setItem("token", ("Bearer " + response.token))
           this.router.navigate(['/home']);
 
-          setTimeout(() => {
-            location.reload();
-          }, 100)
+          // setTimeout(() => {
+          //   location.reload();
+          // }, 100)
 
         } else {
           console.log("Internal server error");

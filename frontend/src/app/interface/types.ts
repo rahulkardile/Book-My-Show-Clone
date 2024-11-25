@@ -27,3 +27,35 @@ export interface LoginResponse {
   statusCode: number;
   success: boolean;
 }
+
+export interface Movie {
+  title: string;
+  genre: string;
+  duration: string; 
+  releaseDate: string;
+  endDate: string; 
+  rating: number;
+  description?: string;
+  language?: string;
+  shows?: Show[];
+}
+
+export interface Show {
+}
+
+export interface Theater {
+  id?: number;
+  name: string;
+  address: string;
+  shows?: string[]; 
+}
+
+
+export interface Show {
+  showId?: number; 
+  time: string;
+  date: string; 
+  scheduleEndDate: string;
+  movieId: number;
+  theaterId: number; 
+}

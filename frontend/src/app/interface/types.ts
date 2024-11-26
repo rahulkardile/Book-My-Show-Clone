@@ -21,11 +21,30 @@ export enum UserType {
   GUEST = "GUEST",
 }
 
+export interface localUser {
+  userId: number;
+  name: string;
+  email: string;
+  username: string | null;
+  location: string;
+  type: string;
+  phone: string;
+};
+
 export interface LoginResponse {
   message: string;
-  token: string | null;
+  token: string;
   statusCode: number;
   success: boolean;
+  data: {
+      userId: number;
+      name: string;
+      email: string;
+      username: string | null;
+      location: string;
+      type: string;
+      phone: string;
+  };
 }
 
 export interface Movie {

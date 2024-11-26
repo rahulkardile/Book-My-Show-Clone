@@ -1,5 +1,6 @@
 package com.lentra.BookMyShowClone.controller;
 
+import com.lentra.BookMyShowClone.DTO.UserDTO;
 import com.lentra.BookMyShowClone.entity.Response;
 import com.lentra.BookMyShowClone.entity.Users;
 import com.lentra.BookMyShowClone.service.UserService;
@@ -48,8 +49,9 @@ public class UserContoller {
             response.setMessage("User login successfull!");
             response.setStatusCode(HttpStatus.OK.value( ));
             response.setSuccess(true);
-            System.out.println("Okk");
-            return new ResponseEntity <>(response , HttpStatus.OK);
+            UserDTO dto = userService.contvertToUserDTO(userService.GetUserByUserName(user.getUsername()));
+            response.setData(dto);
+            return new ResponseEntity <>(response, HttpStatus.OK);
         }
     }
 

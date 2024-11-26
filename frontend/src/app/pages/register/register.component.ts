@@ -27,8 +27,8 @@ export class RegisterComponent {
 
   onSubmit(){
     this.authService.register(this.user).subscribe({
-      next: (req: any)=>{
-        console.log(req);
+      next: (res: any)=>{
+        console.log(res);
         this.router.navigate(["/login"]);
       },
       error: (err: any)=>{

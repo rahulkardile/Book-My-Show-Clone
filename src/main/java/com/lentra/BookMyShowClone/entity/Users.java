@@ -20,13 +20,13 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Users {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int user_id;
 
+    @Column(unique = true, nullable = false)
     private String name;
-
-    private String active;
 
     @Column(unique = true, nullable = false)
     private String email;
@@ -43,5 +43,6 @@ public class Users {
     @Enumerated(EnumType.STRING)
     private UserType type;
     private Date created_at;
+
 }
 

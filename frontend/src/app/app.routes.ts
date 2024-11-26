@@ -5,6 +5,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { CreateMovieComponent } from './pages/create-movie/create-movie.component';
 import { CreateTheaterComponent } from './pages/create-theater/create-theater.component';
 import { ShowComponent } from './pages/show/show.component';
+import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 
 export const routes: Routes = [
     {path: "home", component: HomeComponent},
@@ -14,4 +15,5 @@ export const routes: Routes = [
     {path: "create-movie", component: CreateMovieComponent},
     {path: "create-theater", component: CreateTheaterComponent},
     {path: "create-show", component: ShowComponent},
+    {path: "user-profile", component: UserProfileComponent},
 ];

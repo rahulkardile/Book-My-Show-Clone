@@ -14,4 +14,5 @@ public class Response {
     private String token;
     private int statusCode;
     private boolean success;
+    private Object data;
 }

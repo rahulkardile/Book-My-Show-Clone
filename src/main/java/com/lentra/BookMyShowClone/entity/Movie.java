@@ -24,11 +24,21 @@ public class Movie {
     @Column(nullable = false, length = 100)
     private String title;
 
+    @Column(nullable = false)
+    private String img;
+
+    @Lob
+    private byte[] poster_data;
+
+    private String poster_name;
+
+    private String poster_type;
+
     @Column(nullable = false, length = 50)
     private String genre;
 
-    @Column(nullable = false)
-    private Duration duration;
+    @Column(nullable = false, length = 10)
+    private String duration;
 
     @Column(nullable = false)
     private LocalDate releaseDate;
@@ -39,12 +49,10 @@ public class Movie {
     @Column(nullable = false)
     private Double rating;
 
-    @Column(nullable = true)
+    @Column(nullable = true, length = 8000)
     private String description;
 
     @Column(nullable = true)
     private String language;
 
-    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
-    private List<Show> shows = new ArrayList<>();
 }

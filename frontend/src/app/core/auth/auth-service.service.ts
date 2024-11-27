@@ -21,7 +21,7 @@ export class AuthServiceService {
   }
 
   register(data: UserRegistration
-    
+
   ): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}/auth/register`, data).pipe(
       catchError(this.handleError)

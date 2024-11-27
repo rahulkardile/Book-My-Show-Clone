@@ -1,10 +1,10 @@
-<div class="w-[80%] mt-9 m-auto bg-red-200">
+<div class="w-full mt-9 m-auto bg-slate-50">
 
-  <div class="overflow-hidden relative ">
+  <div class="overflow-hidden w-[80%] m-auto rounded-md relative ">
 
-    <div class="flex ease-out duration-700" [style.transform]="'translateX(-'+ current * 100 +'%)'" >
+    <div class="flex ease-out duration-700 rounded-lg" [style.transform]="'translateX(-'+ current * 106 +'%)'">
       @for (item of images; track $index) {
-      <img [src]="item" alt="img">
+      <img [src]="item" alt="img" class="rounded-lg mx-6">
       }
     </div>
 
@@ -20,3 +20,28 @@
 
   </div>
 </div>
+
+<section class="w-10/12 px-12 m-auto py-5 mt-3">
+  <h2 class="text-2xl font-semibold mb-4">Recommended Movies</h2>
+
+  <section class="flex flex-row justify-between flex-wrap gap-11">
+   @for (item of moviesData; track $index) {
+    <div class="bg-white w-fit shadow-md rounded-lg overflow-hidden duration-300 hover:scale-105">
+
+      <div class="w-fit">
+        <img [src]="item.img"
+          alt=" poster" class="h-80 object-contain ">
+        <div class="flex items-center p-2 gap-2 bg-gray-500 text-white text-xs font-bold">
+          <ng-icon name="bootstrapStarFill" />
+          <p> {{item.rating}} / 10.0</p>
+        </div>
+      </div>
+      <div class="p-2">
+        <h3 class="text-sm font-semibold">{{ item.title | slice:0:30 }}{{ item.title.length > 20 ? '...' : '' }}</h3>
+        <h4 class="text-xs text-gray-600">{{ item.genre| slice:0:34 }}{{ item.title.length > 20 ? '...' : '' }}</h4>
+      </div>
+    </div>
+   }
+    
+  </section>
+</section>

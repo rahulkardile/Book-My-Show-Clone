@@ -31,15 +31,8 @@ export class CreateMovieComponent {
   minutes: number = 23;
   seconds: number = 0;
 
-  constructor(private moviesService: MoviesServiceService) {
-
-    const data = moviesService.getAllMovie().subscribe({
-      next: (res) => {
-        console.log(res);
-      }
-    })
-
-  }
+  
+  constructor(private moviesService: MoviesServiceService) { }
 
   onSubmit() {
 

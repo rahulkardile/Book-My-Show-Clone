@@ -29,14 +29,11 @@ public class UserService {
     private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
 
     public boolean registerUser(Users user) {
-
         if ( repo.findByEmail(user.getEmail( )) == null ) {
             user.setPassword(encoder.encode(user.getPassword( )));
-
             if ( user.getType( ) == null ) {
                 user.setType(UserType.USER);
             };
-
             user.setCreated_at(new Date( ));
             repo.save(user);
             return true;
@@ -53,11 +50,9 @@ public class UserService {
         Authentication authentication = manager.authenticate(
                 new UsernamePasswordAuthenticationToken(user.getUsername( ) , user.getPassword( ))
         );
-
         if ( authentication.isAuthenticated( ) ) {
             return jwtService.generateToken(user.getUsername( ));
         }
-
         return "false";
     }
 

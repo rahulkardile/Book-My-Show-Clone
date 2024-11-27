@@ -16,6 +16,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.context.SecurityContextHolderFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -27,18 +28,22 @@ public class securityConfig {
     @Autowired
     private JwtFilter jwtFilter;
 
+    @Autowired
+    private CorsFilter corsFilter;
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity security) throws Exception {
 
         return security
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(req -> req
-                        .requestMatchers("/api/auth/login", "/api/auth/register")
+                        .requestMatchers("/api/auth/login", "/api/auth/register", "/api/movie/card-movie")
                         .permitAll()
                         .anyRequest( )
                         .authenticated( ))
                 .httpBasic(Customizer.withDefaults( ))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .addFilterBefore(corsFilter, SecurityContextHolderFilter.class)
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .build( );
     }

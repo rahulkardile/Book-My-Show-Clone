@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import java.security.NoSuchAlgorithmException;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
@@ -19,24 +21,27 @@ import java.util.function.Function;
 @Service
 public class JWTService {
 
-    String secret = "";
+    String secret = "+J6GFtJWByks8tW+qYFIpBcuWs/whYHH6uSjW1z3wzs=";
 
     JWTService() throws NoSuchAlgorithmException {
-        KeyGenerator genKey = KeyGenerator.getInstance("HmacSHA256");
-        SecretKey key = genKey.generateKey();
-        secret = Base64.getEncoder().encodeToString(key.getEncoded());
+//        KeyGenerator genKey = KeyGenerator.getInstance("HmacSHA256");
+//        SecretKey key = genKey.generateKey();
+//        secret = Base64.getEncoder().encodeToString(key.getEncoded());
+//        System.out.println("JWT Secret : " + secret);
     }
 
     public String generateToken(String username){
 
         Map<String, Object> claims = new HashMap <>(  );
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime expiryDate = now.plusMonths(6);
 
         return Jwts.builder()
                 .claims()
                 .add(claims)
                 .subject(username)
-                .issuedAt(new Date(System.currentTimeMillis()))
-                .expiration(new Date(System.currentTimeMillis() + 60 * 60 * 30))
+                .setIssuedAt(Date.from(now.atZone(ZoneId.systemDefault()).toInstant()))
+                .setExpiration(Date.from(expiryDate.atZone(ZoneId.systemDefault()).toInstant()))
                 .and()
                 .signWith(getKey())
                 .compact();

@@ -12,39 +12,45 @@ export class MoviesServiceService {
 
   constructor(private http: HttpClient) { }
 
-  token = localStorage.getItem('token'); 
+  token = localStorage.getItem('token');
 
-  createMovie(data: Movie): Observable<any>{
+  createMovie(data: Movie): Observable<any> {
 
-  if (!this.token) {
-    return throwError(() => new Error('No authentication token found'));
-  }
+    if (!this.token) {
+      return throwError(() => new Error('No authentication token found'));
+    }
 
-  const headers = new HttpHeaders({
-    'Authorization': this.token,
-    'Content-Type': 'application/json' // Optional: To specify that the content is JSON
-  });
+    const headers = new HttpHeaders({
+      'Authorization': this.token,
+      'Content-Type': 'application/json' // Optional: To specify that the content is JSON
+    });
 
     return this.http.post(`${this.baseUrl}/create`, data, { headers: headers }).pipe(
       catchError(this.handleError)
     )
   }
 
-  getAllMovie(): Observable<any>{
+  getAllMovie(): Observable<any> {
 
     if (!this.token) {
       return throwError(() => new Error('No authentication token found'));
     }
-  
+
     const headers = new HttpHeaders({
       'Authorization': this.token,
       'Content-Type': 'application/json' // Optional: To specify that the content is JSON
     });
-  
-      return this.http.get(`${this.baseUrl}/get`, {headers: headers}).pipe(
-        catchError(this.handleError)
-      )
-    }
+
+    return this.http.get(`${this.baseUrl}/get`, { headers: headers }).pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  getAllMovieForCard(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/card-movie`).pipe(
+      catchError(this.handleError)
+    )
+  }
 
   private handleError(error: any): Observable<never> {
     console.error('An error occurred:', error);

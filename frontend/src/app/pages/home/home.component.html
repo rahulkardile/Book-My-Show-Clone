@@ -1,29 +1,22 @@
-<main class="w-[70%] h-[500px] border m-auto mt-5 relative overflow-hidden">
-    <div class="absolute w-full h-full flex">
-      <img
-        src="https://picsum.photos/id/233/1000/500"
-        id="slide"
-        class="h-full w-full object-cover absolute"
-        alt="Slide 1"
-      />
-      <img
-        src="https://picsum.photos/id/221/1000/500"
-        id="slide"
-        class="h-full w-full object-cover absolute"
-        alt="Slide 2"
-      />
-      <img
-        src="https://picsum.photos/id/267/1000/500"
-        id="slide"
-        class="h-full w-full object-cover absolute"
-        alt="Slide 3"
-      />
-      <img
-        src="https://picsum.photos/id/287/1000/500"
-        id="slide"
-        class="h-full w-full object-cover absolute"
-        alt="Slide 4"
-      />
+<div class="w-[80%] mt-9 m-auto bg-red-200">
+
+  <div class="overflow-hidden relative ">
+
+    <div class="flex ease-out duration-700" [style.transform]="'translateX(-'+ current * 100 +'%)'" >
+      @for (item of images; track $index) {
+      <img [src]="item" alt="img">
+      }
     </div>
-  </main>
-  
+
+    <div class="absolute top-0 h-full w-full justify-between items-center flex px-10">
+      <button (click)="previousSlide()" class=" text-2xl font-semibold text-white rounded-md">
+        <ng-icon name="bootstrapArrowLeftCircleFill" />
+      </button>
+
+      <button (click)="nextSlide()" class=" text-2xl font-semibold text-white rounded-md">
+        <ng-icon name="bootstrapArrowRightCircleFill" />
+      </button>
+    </div>
+
+  </div>
+</div>

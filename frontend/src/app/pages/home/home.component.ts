@@ -1,34 +1,42 @@
 import { AfterViewInit, Component } from '@angular/core';
+import { bootstrapArrowLeftCircleFill, bootstrapArrowRightCircleFill } from '@ng-icons/bootstrap-icons';
+import { NgIcon, provideIcons } from '@ng-icons/core';
 
 @Component({
   selector: 'app-home',
   standalone: true,
+  imports: [NgIcon],
+  viewProviders: [provideIcons({ bootstrapArrowLeftCircleFill, bootstrapArrowRightCircleFill })],
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'], // Fixed plural for styles
+  styleUrls: ['./home.component.css'],
 })
-export class HomeComponent implements AfterViewInit {
-  slides: HTMLElement[] = [];
-  count = 0;
+export class HomeComponent {
 
-  constructor() {}
+  constructor() { }
 
-  ngAfterViewInit(): void {
-    this.slides = Array.from(document.querySelectorAll('#slide'));
+  public current: number = 0;
 
-    this.slides.forEach((slide, index) => {
-      slide.style.left = `${index * 100}%`;
-    });
-
-    this.startCarousel();
+  previousSlide() {
+    if (this.current === 0) {
+      this.current = this.images.length - 1; 
+    } else {
+      this.current -= 1;
+    }
   }
 
-  startCarousel(): void {
-    setInterval(() => {
-      this.count = (this.count + 1) % this.slides.length; // Loop back to the first slide
-      this.slides.forEach((slide, index) => {
-        slide.style.transform = `translateX(-${this.count * 100}%)`;
-        slide.style.transition = 'transform 0.5s ease-in-out';
-      });
-    }, 3000); // Change slide every 3 seconds
+  nextSlide() {
+    if (this.current === this.images.length - 1) {
+      this.current = 0;
+    } else {
+      this.current += 1;
+    }
   }
+
+  images: string[] = [
+    "https://assets-in.bmscdn.com/promotions/cms/creatives/1732278881289_sojbmsbanner1240x300.jpg",
+    "https://assets-in.bmscdn.com/promotions/cms/creatives/1730301672680_rahulduawebn.jpg",
+    "https://assets-in.bmscdn.com/promotions/cms/creatives/1726036566435_playcardnewweb.jpg",
+    "https://assets-in.bmscdn.com/promotions/cms/creatives/1732022746355_1worldofchristmasatjioworlddrivewebshowcase1240x300.jpg"
+  ]
+
 }

@@ -18,10 +18,21 @@
 
     <div class="flex flex-col gap-2">
       <label for="language" class="text-xs font-semibold">Language</label>
-      <input required type="text" name="language" [(ngModel)]="MovieData.language"
-        class="p-3 text-xs bg-slate-100 rounded-md" placeholder="Enter your movie language . . ." id="language" />
+      <select
+        name="language"
+        [(ngModel)]="MovieData.language"
+        required
+        class="p-3 text-xs bg-slate-100 rounded-md"
+        id="language"
+      >
+        <option value="" disabled>Select a language</option>
+        <option value="Marathi">Marathi</option>
+        <option value="Hindi">Hindi</option>
+        <option value="English">English</option>
+        <option value="Tamil">Tamil</option>
+      </select>
     </div>
-
+    
     <div class="flex flex-col gap-2">
       <label for="releaseDate" class="text-xs font-semibold">Release Date</label>
       <input required type="date" name="releaseDate" [(ngModel)]="MovieData.releaseDate"
@@ -80,5 +91,6 @@
     <button type="submit" class="bg-red-600 p-3 rounded-md font-semibold text-xs text-white">
       Submit
     </button>
+    
   </form>
 </section>

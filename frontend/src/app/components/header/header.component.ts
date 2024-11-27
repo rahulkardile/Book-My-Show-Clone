@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import { LoginResponse } from '../../interface/types';
+import { localUser, LoginResponse } from '../../interface/types';
 
 @Component({
   selector: 'app-header',
@@ -12,15 +12,23 @@ import { LoginResponse } from '../../interface/types';
 })
 
 export class HeaderComponent {
-  userInfo = localStorage.getItem("userInfo")
+
+  userInfo: localUser = {
+    email: "",
+    location: "",
+    name: "",
+    phone: "",
+    type: "",
+    userId: 0,
+    username: ""
+  };
 
   constructor(private routes: Router) {
-    console.log(this.token);
-
-    if (this.userInfo) {
-      console.log(JSON.parse(this.userInfo));
+    let data = localStorage.getItem("userInfo");
+    if (data) {
+      this.userInfo = JSON.parse(data);
+      console.log(this.userInfo);
     }
-
   }
 
   logoPath = 'assets/images/logo.png';

@@ -54,17 +54,17 @@
     </section>
   </nav>
 
+  @if (userInfo.type === "ADMIN") {
   <nav class="flex flex-row p-2 justify-between text-sm bg-gray-400 px-20 py-2">
-
     <section class="flex gap-6 outline-none">
     </section>
-
     <section class="flex gap-6">
       <a href="#">Update User</a>
       <a [routerLink]="['/create-movie']">Create Movie</a>
       <a [routerLink]="['/create-theater']">Create Theater</a>
       <a [routerLink]="['/create-show']">Create Show</a>
     </section>
-
   </nav>
+  }
+
 </header>

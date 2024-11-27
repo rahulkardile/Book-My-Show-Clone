@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule, NgModel } from '@angular/forms';
-import { AuthServiceService } from '../../core/auth-service.service';
 import { Router } from '@angular/router';
+import { AuthServiceService } from '../../core/auth/auth-service.service';
 
 @Component({
   selector: 'app-register',

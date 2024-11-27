@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { AuthServiceService } from '../../core/auth-service.service';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { LoginResponse, UserLogin } from '../../interface/types';
+import { AuthServiceService } from '../../core/auth/auth-service.service';
 
 @Component({
   selector: 'app-login',

@@ -47,16 +47,19 @@ export interface LoginResponse {
   };
 }
 
-export interface Movie {
+export interface Movie{
   title: string;
   genre: string;
-  duration: string; 
+  duration: string;
   releaseDate: string;
-  endDate: string; 
+  endDate: string;
+  img: string;
   rating: number;
-  description?: string;
-  language?: string;
-  shows?: Show[];
+  description: string;
+  language: string;
+  poster_data: string | null,
+  poster_name: string | null,
+  poster_type: string | null,
 }
 
 export interface Show {

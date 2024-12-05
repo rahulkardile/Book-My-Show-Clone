@@ -57,5 +57,11 @@ export class MoviesServiceService {
     return throwError(() => error);
   }
 
+  getMovieByTitle(title: String): Observable<any> {
+    return this.http.get(`${this.baseUrl}/get/${title}`).pipe(
+      catchError(this.handleError)
+    )
+  }
+
 }
 

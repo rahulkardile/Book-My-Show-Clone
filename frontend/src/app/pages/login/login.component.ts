@@ -23,30 +23,45 @@ export class LoginComponent {
   constructor(private authService: AuthServiceService, private router: Router) { }
 
   onSubmit() {
-    this.authService.login(this.user).subscribe({
-      next: (response: LoginResponse) => {
+    // this.authService.login(this.user).subscribe({
+    //   next: (response: LoginResponse) => {
 
-        if (response.success && response.token) {
+    //     if (response.success && response.token) {
           
-          localStorage.setItem("token", ("Bearer " + response.token))
-          localStorage.setItem("userInfo", JSON.stringify(response.data));
+    //       localStorage.setItem("token", ("Bearer " + response.token))
+    //       localStorage.setItem("userInfo", JSON.stringify({"userId":1,"name":"Admin","email":"admin@gmail.com","username":"admin","location":"Pune, Maharashtra, India","type":"ADMIN","phone":"07499297101"}));
           
-          this.router.navigate(['/home']);
+    //       this.router.navigate(['/home']);
 
-          setTimeout(() => {
-            location.reload();
-          }, 100)
+    //       setTimeout(() => {
+    //         location.reload();
+    //       }, 100)
 
-        } else {
-          console.log("Internal server error");
-        }
-      },
+    //     } else {
+    //       console.log("Internal server error");
+    //     }
+    //   },
 
-      error: (error: any) => {
-        this.errorMessage = error.message || "Internal server error";
-      }
+    //   error: (error: any) => {
+    //     this.errorMessage = error.message || "Internal server error";
+    //   }
 
-    })
+    // })
+
+    if(this.user.password === "admin" && this.user.username === "admin"){
+        // localStorage.setItem("token", ("Bearer " + response.token))
+        localStorage.setItem("userInfo", JSON.stringify({"userId":1,"name":"Admin","email":"admin@gmail.com","username":"admin","location":"Pune, Maharashtra, India","type":"ADMIN","phone":"07499297101"}));
+        
+        this.router.navigate(['/home']);
+
+        setTimeout(() => {
+          location.reload();
+        }, 100)
+    }
+
+    else{
+      console.log("Please provide valid credencials!");
+    }
   }
 
 }
